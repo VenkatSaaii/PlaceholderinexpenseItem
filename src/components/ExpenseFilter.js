@@ -3,22 +3,23 @@ import React from "react";
 
 const ExpenseFilter = (props) => {
   const dropdownHandler = (event) => {
-    
-      props.onChangeFilter(event.target.value);
-    } 
-      
-    
-  
+    props.onChangeFilter(event.target.value);
+  };
+
+  // List of years
+  const years = [2022, 2021, 2020, 2019];
 
   return (
     <div className="expenses-filter">
       <div className="expenses-filter__control">
         <label>Filter By Year</label>
         <select value={props.selected} onChange={dropdownHandler}>
-          <option value="2022">2022</option>
-          <option value="2021">2021</option>
-          <option value="2020">2020</option>
-          <option value="2019">2019</option>
+          {/* Display all the years in the dropdown */}
+          {years.map((year) => (
+            <option key={year} value={year}>
+              {year}
+            </option>
+          ))}
         </select>
       </div>
     </div>
@@ -26,3 +27,5 @@ const ExpenseFilter = (props) => {
 };
 
 export default ExpenseFilter;
+
+
