@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import './ExpenseForm.css';
 
 const ExpenseForm = (props) => {
+    const [isEditing,setIsEditing]= useState(false);
+
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -31,9 +33,26 @@ const ExpenseForm = (props) => {
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('');
+
+        setIsEditing(false);
     };
 
+    const startEditHandler=()=> {
+        setIsEditing(true);
+    }
+    const stopEditingHandler=()=> {
+        setIsEditing(false);
+    }
+
+
+
     return (
+        <div >
+            {!isEditing && (
+                <button onClick={startEditHandler}>Add Expense</button>
+            )}
+
+        {isEditing &&(
         <form onSubmit={submitHandler}>
             <div className="new-expense__controls" >
                 <div className="new-expense__control" > Expense Title</div>
@@ -47,9 +66,19 @@ const ExpenseForm = (props) => {
             </div>
             <div className="new-expense__actions">
                 <button type="submit" >Add Expense</button>
+                <button type="button" onClick={stopEditingHandler}>Cancel</button>
             </div>
         </form>
+        )}
+        </div>
     );
 }
 
 export default ExpenseForm;
+
+
+
+
+
+
+
