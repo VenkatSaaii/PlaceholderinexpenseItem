@@ -1,9 +1,11 @@
-import React from "react";
 
+// import ExpenseForm from "./ExpenseForm";
 import "./Expenses.css";
 import Card from "./Card";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpensesList from "./ExpensesList";
+import ExpensesChart from "./ExpensesChart";
+
 
 function Expenses(props) {
   const filterExpenses = (selectedYear) => {
@@ -18,19 +20,24 @@ function Expenses(props) {
   
   const filteredExpenses = filterExpenses(props.selectedYear);
 
-  
   return (
     <Card className="expenses">
       <ExpenseFilter
         selected={props.selectedYear}
         onChangeFilter={props.onYearChange}
       />
+     <ExpensesChart  expenses={filteredExpenses}/>
      <ExpensesList expenses={filteredExpenses}/>
     </Card>
   );
 }
 
 export default Expenses;
+
+
+
+
+
 
 
 
